@@ -1,7 +1,8 @@
 import api from '@/lib/axios'
 import { API_ROUTES } from '../../app/constants/apiRoutes'
-export async function fetchNominations(token) {
+export async function fetchNominations(token,filters) {
   const res = await api.get(API_ROUTES.nominations.list, {
+     params: filters,
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -9,6 +10,7 @@ export async function fetchNominations(token) {
 
   return res.data
 }
+
 export async function sendNominationNotificationServer(token, eventId) {
   if (!token) {
     throw new Error('Token is missing')

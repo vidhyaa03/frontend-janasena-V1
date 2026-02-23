@@ -1,19 +1,30 @@
-export async function fetchNominations() {
-  const res = await fetch('/api/nominations')
+export async function fetchNominations(locationFilter) {
+  const params = {}
+  if (locationFilter?.assemblyId)
+    params.assembly_id = locationFilter.assemblyId
+  if (locationFilter?.mandalId)
+    params.mandal_id = locationFilter.mandalId
+  if (locationFilter?.villageId)
+    params.village_id = locationFilter.villageId
+  if (locationFilter?.wardId)
+    params.ward_id = locationFilter.wardId
+  const queryString = new URLSearchParams(params).toString()
+  const url = queryString
+    ? `/api/nominations?${queryString}`
+    : `/api/nominations`
 
-  const data = await res.json()
-
+  const res = await fetch(url)
   if (!res.ok) {
-    throw new Error(data.message || 'Failed to fetch nominations')
+    const data = await res.json()
+    throw new Error(data.message || 'Failed to fetch elections')
   }
 
-  return data
+  return res.json()
 }
 export async function sendNominationNotificationClient(eventId) {
   if (!Number.isInteger(eventId)) {
     throw new Error('Invalid event id')
   }
-
   const res = await fetch(`/api/nominations/${eventId}`, {
     method: 'POST',
     credentials: 'include', // keep this
