@@ -5,7 +5,7 @@ import { useMandelVillages } from "@/hooks/meta/useMandelVillages";
 import { useState } from "react";
 import { useWardsByLocation } from "@/hooks/meta/useWardsByLocation";
 import Button from "../ui/Button";
-export default function LocationPopup({ open, onClose, assemblies, onSelect }) {
+export default function LocationPopup({ open, onClose, assemblies, onSelect,title}) {
     const [assemblyId, setAssemblyId] = useState(null);
     const [mandalId, setMandalId] = useState(null);
     const [villageId, setVillageId] = useState(null);
@@ -35,7 +35,7 @@ export default function LocationPopup({ open, onClose, assemblies, onSelect }) {
         <Modal
             open={open}
             onClose={onClose}
-            title="Create New Election"
+            title={title}
             description="Set nomination and voting schedule carefully.">
             <div className="mb-4">
                 <label className="text-sm font-medium">Assembly</label>
@@ -77,7 +77,7 @@ export default function LocationPopup({ open, onClose, assemblies, onSelect }) {
                 </div>
             )}
             {mandalId && (
-                <div>
+                <div className="mb-4">
                     <label className="text-sm font-medium">Village</label>
                     <select
                         name="village_id"

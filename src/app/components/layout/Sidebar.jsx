@@ -60,7 +60,7 @@ export default function Sidebar() {
           RK
         </div>
         <div>
-          <p className="text-sm font-medium">Rajesh Kumar</p>
+          <p className="text-sm font-medium">HELLO PURNA SRINIVAS</p>
           <p className="text-xs text-white/70">National</p>
         </div>
       </div>

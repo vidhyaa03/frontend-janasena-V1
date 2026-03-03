@@ -74,16 +74,16 @@ export async function statusApprove(nominationId) {
 
   return data
 }
-export async function statusReject(nominationId) {
+export async function statusReject(id, reason) {
   const res = await fetch(
-    `/api/nominations/reject/${nominationId}/reject`,
+    `/api/nominations/${id}/reject`,
     {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        reason: 'Not eligible', // ✅ STATIC reason
+        reason, 
       }),
     }
   )

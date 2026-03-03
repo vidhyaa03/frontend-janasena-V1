@@ -41,7 +41,7 @@ export async function createElectionClient(payload) {
   return data
 }
 export async function publishResults(publishId) {
-  debugger
+  
   const id = Number(publishId)
 
   if (!Number.isInteger(id)) {

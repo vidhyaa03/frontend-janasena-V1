@@ -76,7 +76,7 @@ export default function CreateElectionPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    debugger
+   
     const payload = {
       title: form.title,
       assembly_id: form.assembly_id ? Number(form.assembly_id) : null,
@@ -120,13 +120,10 @@ export default function CreateElectionPage() {
 
       <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-sm border p-6 lg:p-8">
         <form onSubmit={handleSubmit} className="space-y-6">
-
-          {/* Election Details */}
           <div>
             <h2 className="text-md font-semibold mb-4 text-gray-800">
               Election Details
             </h2>
-
             <div className="space-y-4">
 
               <div>
@@ -140,8 +137,6 @@ export default function CreateElectionPage() {
                   onChange={handleChange}
                 />
               </div>
-
-              {/* Assembly */}
               <div>
                 <label className="text-sm font-medium">Assembly</label>
                 <select

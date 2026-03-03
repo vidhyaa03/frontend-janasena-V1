@@ -84,6 +84,7 @@ export default function ResultsPage() {
                               onClose={closeLocation}
                               assemblies={assemblies}
                               onSelect={handleLocationSelect}
+                              title= "Results"
                           />
                       )
                   }

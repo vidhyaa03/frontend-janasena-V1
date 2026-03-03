@@ -15,7 +15,7 @@ export default function CandidateCard({ candidate, onApprove, approvingId }) {
         <div className="absolute -bottom-12 left-6">
           <div className="relative w-24 h-24 rounded-full border-4 border-white overflow-hidden shadow-lg">
             <Image
-              src={candidate.profilePhoto || '/avatar-placeholder.png'}
+              src="https://voting-application-1a.s3.us-east-1.amazonaws.com/Images/94a1ff5f-b50e-4666-a33a-e295df53a5d0.jpg"
               alt={candidate.name}
               fill
               className="object-cover"

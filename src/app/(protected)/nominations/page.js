@@ -38,7 +38,7 @@ export default function MembersPage() {
   }, [])
 
   const handleApprove = async (nominationId) => {
-    if (approvingId) return // 🔒 prevent double click
+    if (approvingId) return 
 
     try {
       setApprovingId(nominationId)
@@ -54,22 +54,24 @@ export default function MembersPage() {
       setApprovingId(null)
     }
   }
-  const handleReject = async (nominationId) => {
-    try {
-      const reason = prompt('Enter rejection reason')
-      if (!reason || !reason.trim()) {
-        alert('Rejection reason is required')
-        return
-      }
-
-      const res = await reject(nominationId, reason)
-      if (res) {
-        alert(res.message || 'Nomination rejected')
-      }
-    } catch (error) {
-      alert(error.message || 'Failed to reject nomination')
+ const handleReject = async (nominationId) => {
+  console.log(nominationId,"jjjj");
+  try {
+    const reason = prompt('Enter rejection reason')
+    if (!reason || !reason.trim()) {
+      alert('Rejection reason is required')
+      return
     }
+    const res = await reject(nominationId, reason)
+    if (res) {
+      alert(res.message || 'Nomination rejected')
+      window.location.reload()
+    }
+
+  } catch (error) {
+    alert(error.message || 'Failed to reject nomination')
   }
+}
   const handleSendNotification = async () => {
     const eventId = Number(selectedEvent)
     if (!Number.isInteger(eventId) || eventId <= 0) {
@@ -96,7 +98,7 @@ export default function MembersPage() {
       <DashboardHeader
         title="Nominations"
         para="You have full administrative access"
-        action={<Button  onClick={() => setOpenModal(true)}>Send Nomination Notifications</Button>}
+        action={<Button onClick={() => setOpenModal(true)}>Send Nomination Notifications</Button>}
       />
       <FiltersBar
         action={<Button onClick={openLocation}>Location Pop Up</Button>}
@@ -119,8 +121,8 @@ export default function MembersPage() {
         )}
       </div>
       {openModal && (
-        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50"  onClick={() => setOpenModal(false)}>
-          <div className="bg-white rounded-lg p-6 w-full max-w-md"  onClick={(e) => e.stopPropagation()}>
+        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50" onClick={() => setOpenModal(false)}>
+          <div className="bg-white rounded-lg p-6 w-full max-w-md" onClick={(e) => e.stopPropagation()}>
             <h2 className="text-lg font-semibold mb-4">
               Send Nomination Notification
             </h2>
@@ -175,6 +177,7 @@ export default function MembersPage() {
             onClose={closeLocation}
             assemblies={assemblies}
             onSelect={handleLocationSelect}
+            title="Nominations"
           />
         )
       }

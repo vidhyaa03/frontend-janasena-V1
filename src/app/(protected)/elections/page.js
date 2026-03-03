@@ -11,7 +11,9 @@ import { useAssemblies } from '../../../hooks/meta/useAssemblies'
 import FiltersBar from '@/app/components/ui/FiltersBar'
 import ElectionsListSkeleton from '@/app/components/Shimmer/ElectionsListSkeleton'
 import LocationPopup from '@/app/components/elections/LocationPopUp'
+import { useRouter } from "next/navigation";
 export default function ElectionsPage() {
+      const router = useRouter();
     const [openCreate, setOpenCreate] = useState(false)
     const [openLocationModel, setLocationModel] = useState(false)
     const { assemblies } = useAssemblies()
@@ -22,7 +24,7 @@ export default function ElectionsPage() {
     const [locationFilter, setLocationFilter] = useState(null);
     const { elections, loading, error, clearError } = useElections(locationFilter)
 
-    const openModal = () => setOpenCreate(true)
+    // const openModal = () => setOpenCreate(true)
     const closeModal = () => setOpenCreate(false)
     const openLocation = () => setLocationModel(true)
     const closeLocation = () => setLocationModel(false)
@@ -30,6 +32,9 @@ export default function ElectionsPage() {
         setLocationFilter(data);
         setLocationModel(false);
     };
+     const openModal = () => {
+    router.push("/create-elections");
+  };
     return (
         <div className="space-y-6">
             <DashboardHeader
@@ -71,6 +76,7 @@ export default function ElectionsPage() {
                     open
                     message={error.message}
                     onClose={clearError}
+                    
                 />
             )}
             {loading ? (
@@ -83,6 +89,7 @@ export default function ElectionsPage() {
                     open={openCreate}
                     onClose={closeModal}
                     assemblies={assemblies}
+                   
                 />
             )}
             {
@@ -92,6 +99,7 @@ export default function ElectionsPage() {
                         onClose={closeLocation}
                         assemblies={assemblies}
                         onSelect={handleLocationSelect}
+                        title= "Elections"
                     />
                 )
             }
