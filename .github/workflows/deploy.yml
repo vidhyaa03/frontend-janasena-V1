@@ -1,24 +1,15 @@
-name: Build Frontend Image
-
+name: Build Frontend Image 
 on:
   push:
     branches: [ main ]
-
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v3
-
-    - name: Set Image Tag
-      run: echo "IMAGE_TAG=${GITHUB_SHA::7}" >> $GITHUB_ENV
-
     - name: Docker Login
       run: echo "${{ secrets.DOCKER_PASS }}" | docker login -u "${{ secrets.DOCKER_USER }}" --password-stdin
-
     - name: Build Image
-      run: docker build -t drevathi837/frontend:${{ env.IMAGE_TAG }} .
-
+      run: docker build -t drevathi837/frontend:latest .
     - name: Push Image
-      run: docker push drevathi837/frontend:${{ env.IMAGE_TAG }}
+      run: docker push drevathi837/frontend:latest
