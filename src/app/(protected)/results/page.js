@@ -15,21 +15,21 @@ export default function ResultsPage() {
   const [electionLevel, setElectionLevel] = useState('all')
   const [assemblyId, setAssemblyId] = useState('all')
 
-  const { assemblies} = useAssemblies()
+  const { assemblies } = useAssemblies()
 
   const [publishLoading, setPublishLoading] = useState(false)
   const [publishError, setPublishError] = useState(null)
   const [locationFilter, setLocationFilter] = useState(null);
   const [openLocationModel, setLocationModel] = useState(false)
-  const {results,loading,error, clearError,} = useResults(locationFilter)
- const openLocation = () => setLocationModel(true)
-    const closeLocation = () => setLocationModel(false)
+  const { results, loading, error, clearError, } = useResults(locationFilter)
+  const openLocation = () => setLocationModel(true)
+  const closeLocation = () => setLocationModel(false)
   useEffect(() => {
     setPage(1)
   }, [electionLevel, assemblyId])
 
   const handlePublishResult = async (id) => {
-    
+
     try {
       setPublishLoading(true)
       setPublishError(null)
@@ -43,9 +43,9 @@ export default function ResultsPage() {
     }
   }
   const handleLocationSelect = (data) => {
-        setLocationFilter(data);
-        setLocationModel(false);
-    };
+    setLocationFilter(data);
+    setLocationModel(false);
+  };
   return (
     <div className="space-y-6">
       <DashboardHeader
@@ -78,16 +78,16 @@ export default function ResultsPage() {
         />
       )}
       {
-                      openLocationModel && (
-                          <LocationPopup
-                              open={openLocationModel}
-                              onClose={closeLocation}
-                              assemblies={assemblies}
-                              onSelect={handleLocationSelect}
-                              title= "Results"
-                          />
-                      )
-                  }
+        openLocationModel && (
+          <LocationPopup
+            open={openLocationModel}
+            onClose={closeLocation}
+            assemblies={assemblies}
+            onSelect={handleLocationSelect}
+            title="Results"
+          />
+        )
+      }
     </div>
   )
 }

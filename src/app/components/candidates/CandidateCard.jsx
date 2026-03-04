@@ -9,21 +9,17 @@ export default function CandidateCard({ candidate, onApprove, approvingId }) {
  
   return (
     <div className="group relative bg-white rounded-3xl shadow-md hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100">
-      
-      {/* Top Gradient Header */}
       <div className="h-24 bg-primary-red from-green-600 via-emerald-500 to-teal-500 relative">
         <div className="absolute -bottom-12 left-6">
           <div className="relative w-24 h-24 rounded-full border-4 border-white overflow-hidden shadow-lg">
             <Image
-              src="https://voting-application-1a.s3.us-east-1.amazonaws.com/Images/94a1ff5f-b50e-4666-a33a-e295df53a5d0.jpg"
+              src={candidate.photo || '/avatar-placeholder.png'}
               alt={candidate.name}
               fill
               className="object-cover"
             />
           </div>
         </div>
-
-        {/* Status Badge */}
         <span
           className={clsx(
             'absolute top-4 right-4 px-4 py-1 rounded-full text-xs font-semibold capitalize shadow-md',

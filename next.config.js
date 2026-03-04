@@ -1,8 +1,10 @@
-/** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: [
-      "voting-application-1a.s3.us-east-1.amazonaws.com",
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "voting-application-1a.s3.us-east-1.amazonaws.com",
+      },
     ],
   },
 }
